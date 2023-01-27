@@ -25,7 +25,7 @@ We can see that the subroutine is called "FUN_00401220" so we can select that an
 
 The disassembly places us right at the start of the function:
 <img src='png/Pasted image 20230127224229.png'> <br />
-What we can do now is:
+What we can do now is: <br />
 a) Look in to decompiled pseudocode and study the program flow there <br />
 b) Look into assembly and study the flow more precisely <br />
 
