@@ -47,7 +47,7 @@ We have: 0x2bf20 = 180000, and: <br />
 <img src='png/Pasted image 20230127224856.png'> <br />
 So the answer to our question is: 3 Minutes.
 
-##### Q3: After the sleep time, it prompts for user password, what is the correct password?
+### Q3: After the sleep time, it prompts for user password, what is the correct password?
 To answer this question we need to identify the moment in the program where loading data into registers like EDX, any comparisions and instructions like JZ (Jump if zero) are taking place, as these are characteristic to the input password -> compare with real password -> give access or reject process.
 
 Lets load up our current function that we are in into Graph View and see what happens as the program goes on:
@@ -62,7 +62,7 @@ We can observe that dword ptr [ECX] is being loaded into EAX register, and then 
 
 Let's take a closer look at the function:
 <img src='png/Pasted image 20230127230300.png'> <br />
-So, we have that the EDX value that is being referenced is in DAT_00403210 and the value in question is 6F6C7462h. Now all we have to do is convert this value from hex to ASCII and see the password:
+So, we have that the EDX value that is being referenced is in DAT_00403210 and the value in question is 6F6C7462h. Now all we have to do is convert this value from hex to ASCII and see the password: <br />
 <img src='png/Pasted image 20230127230510.png'> <br />
 And here we have it! Its just reversed "oltb", so by un-reversing it we are obtaining "btlo" which is the correct answer.
 
