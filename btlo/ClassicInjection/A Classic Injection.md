@@ -9,12 +9,12 @@ Reading Material:
 Filename: analyseme.exe <br />
 SHA256: FF362A3F7078F8B5793E8D2CAC35DE29AE1DAB6608CFC1545C24C9E2372C892A <br />
 
-# Q1: What is the name of the compiler used to generate the EXE?
+## Q1: What is the name of the compiler used to generate the EXE?
 To answer this question we can simply fire up pestudio or detect it easy and load our binary into it to see the compiler information:
 <img src='png/Pasted image 20230127223447.png'> <br />
 As we can see, the compiler is Microsoft Visual C++
 
-# Q2: This malware, when executed, sleeps for some time. What is the sleep time in minutes?
+## Q2: This malware, when executed, sleeps for some time. What is the sleep time in minutes?
 It's time to load up our binary into Ghidra and find where the program calls for Sleep function and what is the parameter used.
 
 With our binary loaded into Ghidra, we can now search for "Sleep" in "Symbol References, Symbol Table" section to help us identify the function which is calling it:
@@ -47,7 +47,7 @@ We have: 0x2bf20 = 180000, and: <br />
 <img src='png/Pasted image 20230127224856.png'> <br />
 So the answer to our question is: 3 Minutes.
 
-# Q3: After the sleep time, it prompts for user password, what is the correct password?
+## Q3: After the sleep time, it prompts for user password, what is the correct password?
 To answer this question we need to identify the moment in the program where loading data into registers like EDX, any comparisions and instructions like JZ (Jump if zero) are taking place, as these are characteristic to the input password -> compare with real password -> give access or reject process.
 
 Lets load up our current function that we are in into Graph View and see what happens as the program goes on:
@@ -66,7 +66,7 @@ So, we have that the EDX value that is being referenced is in DAT_00403210 and t
 <img src='png/Pasted image 20230127230510.png'> <br />
 And here we have it! Its just reversed "oltb", so by un-reversing it we are obtaining "btlo" which is the correct answer.
 
-# Q4: What is the size of the shellcode?
+## Q4: What is the size of the shellcode?
 Here one of the reading suggestions from the Scenario comes in handy: https://www.ired.team/offensive-security/code-injection-process-injection/process-injection
 Not only because it's a good read overall, but rather because we can see sample C++ code to inject and invoke the shellcode, and what we can takeaway from that is the code is utilizing "VirtualAlloc" function, so that is what we are going to look after in our binary.
 
@@ -85,15 +85,15 @@ Here we have it, and we can actually see right away both from assembly and decom
 <img src='png/Pasted image 20230127231642.png'> <br />
 Since LPVOID is optional parameter, we are interested in what comes as SIZE_T dwSize, and in our case its 0x1d9 (473 in decimal), and that is our answer.
 
-# Q5: Shellcode injection involves three important windows API. What is the name of the API Call used?
+## Q5: Shellcode injection involves three important windows API. What is the name of the API Call used?
 Here all we have to do is look at the piece of code with our VirtualAllocEx used. It's very readable in decompiled code, so we don't need to look at assembly here:<br />
 <img src='png/Pasted image 20230127232133.png'> <br />
 So, after VirtualAllocEx, which allocated memory chunk of the same size as our shellcode, we see WriteProcessMemory and CreateRemoteThread functions, and the API Call is "CreateRemoteThread".
 
-# Q6: What is the name of the victim process?
+## Q6: What is the name of the victim process?
 Once again, this can be read both from assembly code and decompiled code, so we just need to spot it from reading the code, and we have:
 <img src='png/Pasted image 20230127232736.png'> <br />
-And in decompiled code:
+And in decompiled code: <br />
 <img src='png/Pasted image 20230127232811.png'> <br />
 So, the victim process is nslookup.exe
 
