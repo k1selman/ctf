@@ -11,20 +11,20 @@ SHA256: FF362A3F7078F8B5793E8D2CAC35DE29AE1DAB6608CFC1545C24C9E2372C892A
 
 ##### Q1: What is the name of the compiler used to generate the EXE?
 To answer this question we can simply fire up pestudio or detect it easy and load our binary into it to see the compiler information:
-<img src='png/Pasted image 20230127223447.png'>
+<img src='png/Pasted image 20230127223447.png'> <br />
 As we can see, the compiler is Microsoft Visual C++
 
 ##### Q2: This malware, when executed, sleeps for some time. What is the sleep time in minutes?
 It's time to load up our binary into Ghidra and find where the program calls for Sleep function and what is the parameter used.
 
 With our binary loaded into Ghidra, we can now search for "Sleep" in "Symbol References, Symbol Table" section to help us identify the function which is calling it:
-<img src='png/Pasted image 20230127224012.png'>
+<img src='png/Pasted image 20230127224012.png'> <br />
 By filtering the symbol references with "Sleep" we are able to find it, and also the details on the call like location, label, subroutine etc.
 
 We can see that the subroutine is called "FUN_00401220" so we can select that and jump straight into it by double clicking the function name to see what is happening there.
 
 The disassembly places us right at the start of the function:
-<img src='png/Pasted image 20230127224229.png'>
+<img src='png/Pasted image 20230127224229.png'> <br />
 What we can do now is:
 a) Look in to decompiled pseudocode and study the program flow there
 b) Look into assembly and study the flow more precisely
@@ -32,38 +32,38 @@ b) Look into assembly and study the flow more precisely
 Lets go with b) approach
 
 By scrolling just a little bit through the function, we have:
-<img src='png/Pasted image 20230127224405.png'>
+<img src='png/Pasted image 20230127224405.png'> <br />
 The code presented here is sufficient to answer the question.
 
 On offset 0x0040124d we can see value 0x2bf20 being pushed on the stack, and right after that we have CALL to KERNEL32.DLL::Sleep, and that is precisely what we wanted as 0x2bf20 is the value of the parameter which is going to be used with our Sleep function.
 
 Now, lets look at Win32 API documentation and look at the Sleep function:
-<img src='png/Pasted image 20230127224730.png|600'>
+<img src='png/Pasted image 20230127224730.png|600'> <br />
 So, the parameter is being given in milliseconds.
 
 Now we have to convert our 0x2bf20 value to the decimal, and then convert the milliseconds into minutes.
 
 We have: 0x2bf20 = 180000, and:
-<img src='png/Pasted image 20230127224856.png'>
+<img src='png/Pasted image 20230127224856.png'> <br />
 So the answer to our question is: 3 Minutes.
 
 ##### Q3: After the sleep time, it prompts for user password, what is the correct password?
 To answer this question we need to identify the moment in the program where loading data into registers like EDX, any comparisions and instructions like JZ (Jump if zero) are taking place, as these are characteristic to the input password -> compare with real password -> give access or reject process.
 
 Lets load up our current function that we are in into Graph View and see what happens as the program goes on:
-<img src='png/Pasted image 20230127225850.png'>
+<img src='png/Pasted image 20230127225850.png'> <br />
 We are presented with graph like this, so now what we can do is go over the functions that are coming right after our starting point function and see if we have any traces of input comparision.
 
 Sure enough, right after our starting function, we see:
-<img src='png/Pasted image 20230127230010.png'>
+<img src='png/Pasted image 20230127230010.png'> <br />
 Function we are interested in is called LAB_004012d0.
 
 We can observe that dword ptr [ECX] is being loaded into EAX register, and then we have CMP instruction (Compare) which compares current value stored in EAX and value that EDX is pointing to, and after the CMP is done we can see JNZ (Jump if not zero) is being called.
 
 Let's take a closer look at the function:
-<img src='png/Pasted image 20230127230300.png'>
+<img src='png/Pasted image 20230127230300.png'> <br />
 So, we have that the EDX value that is being referenced is in DAT_00403210 and the value in question is 6F6C7462h. Now all we have to do is convert this value from hex to ASCII and see the password:
-<img src='png/Pasted image 20230127230510.png'>
+<img src='png/Pasted image 20230127230510.png'> <br />
 And here we have it! Its just reversed "oltb", so by un-reversing it we are obtaining "btlo" which is the correct answer.
 
 ##### Q4: What is the size of the shellcode?
@@ -71,30 +71,30 @@ Here one of the reading suggestions from the Scenario comes in handy: https://ww
 Not only because it's a good read overall, but rather because we can see sample C++ code to inject and invoke the shellcode, and what we can takeaway from that is the code is utilizing "VirtualAlloc" function, so that is what we are going to look after in our binary.
 
 Let's use Symbol References once again:
-<img src='png/Pasted image 20230127230959.png'>
+<img src='png/Pasted image 20230127230959.png'> <br />
 Again, we can find VirtualAlloc call and precise function FUN_00401220 that is utilizing it. Let's jump into the code!
 
 Again, we can read either assembly or pseudocode, so this time let's compare both. Since we know what we are looking for, we can just scroll through both assembly and decompiled code inside our function untill we spot the desired string:
 
 Assembly:
-<img src='png/Pasted image 20230127231216.png'>
+<img src='png/Pasted image 20230127231216.png'> <br />
 Decompiled code:
-<img src='png/Pasted image 20230127231332.png'>
+<img src='png/Pasted image 20230127231332.png'> <br />
 
 Here we have it, and we can actually see right away both from assembly and decompiled code what is the flow here: three values are being pushed on the stack and the function VirtualAllocEx is being called with them as parameters. Lets see Win32 API documentation (or go back to the reference link) and see which value is the shellcode size:
-<img src='png/Pasted image 20230127231642.png'>
+<img src='png/Pasted image 20230127231642.png'> <br />
 Since LPVOID is optional parameter, we are interested in what comes as SIZE_T dwSize, and in our case its 0x1d9 (473 in decimal), and that is our answer.
 
 ##### Q5: Shellcode injection involves three important windows API. What is the name of the API Call used?
 Here all we have to do is look at the piece of code with our VirtualAllocEx used. It's very readable in decompiled code, so we don't need to look at assembly here:
-<img src='png/Pasted image 20230127232133.png'>
+<img src='png/Pasted image 20230127232133.png'> <br />
 So, after VirtualAllocEx, which allocated memory chunk of the same size as our shellcode, we see WriteProcessMemory and CreateRemoteThread functions, and the API Call is "CreateRemoteThread".
 
 ##### Q6: What is the name of the victim process?
 Once again, this can be read both from assembly code and decompiled code, so we just need to spot it from reading the code, and we have:
-<img src='png/Pasted image 20230127232736.png'>
+<img src='png/Pasted image 20230127232736.png'> <br />
 And in decompiled code:
-<img src='png/Pasted image 20230127232811.png'>
+<img src='png/Pasted image 20230127232811.png'> <br />
 So, the victim process is nslookup.exe
 
 Rest of the questions are destined to be analyzed dynamically and all they take is running the sample on your VM and extracting answers to the questions from tool like ProcMon.
