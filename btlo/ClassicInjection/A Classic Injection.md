@@ -6,8 +6,8 @@ Reading Material:
 [Link 1](https://www.ired.team/offensive-security/code-injection-process-injection/process-injection)  
 [Link 2](https://sevrosecurity.com/2020/04/08/process-injection-part-1-createremotethread/#process_injection_primer)
 
-Filename: analyseme.exe
-SHA256: FF362A3F7078F8B5793E8D2CAC35DE29AE1DAB6608CFC1545C24C9E2372C892A
+Filename: analyseme.exe <br />
+SHA256: FF362A3F7078F8B5793E8D2CAC35DE29AE1DAB6608CFC1545C24C9E2372C892A <br />
 
 ##### Q1: What is the name of the compiler used to generate the EXE?
 To answer this question we can simply fire up pestudio or detect it easy and load our binary into it to see the compiler information:
@@ -26,10 +26,10 @@ We can see that the subroutine is called "FUN_00401220" so we can select that an
 The disassembly places us right at the start of the function:
 <img src='png/Pasted image 20230127224229.png'> <br />
 What we can do now is:
-a) Look in to decompiled pseudocode and study the program flow there
-b) Look into assembly and study the flow more precisely
+a) Look in to decompiled pseudocode and study the program flow there <br />
+b) Look into assembly and study the flow more precisely <br />
 
-Lets go with b) approach
+Lets go with b) approach <br />
 
 By scrolling just a little bit through the function, we have:
 <img src='png/Pasted image 20230127224405.png'> <br />
