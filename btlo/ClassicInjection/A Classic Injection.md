@@ -11,7 +11,7 @@ SHA256: FF362A3F7078F8B5793E8D2CAC35DE29AE1DAB6608CFC1545C24C9E2372C892A
 
 ##### Q1: What is the name of the compiler used to generate the EXE?
 To answer this question we can simply fire up pestudio or detect it easy and load our binary into it to see the compiler information:
-![](png/Pasted%image%20230127223447.png)
+![Screenshot](png/Pasted%image%20230127223447.png)
 As we can see, the compiler is Microsoft Visual C++
 
 ##### Q2: This malware, when executed, sleeps for some time. What is the sleep time in minutes?
