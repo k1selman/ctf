@@ -38,12 +38,12 @@ The code presented here is sufficient to answer the question.
 On offset 0x0040124d we can see value 0x2bf20 being pushed on the stack, and right after that we have CALL to KERNEL32.DLL::Sleep, and that is precisely what we wanted as 0x2bf20 is the value of the parameter which is going to be used with our Sleep function.
 
 Now, lets look at Win32 API documentation and look at the Sleep function:
-<img src='png/Pasted image 20230127224730.png|600'> <br />
+<img src='png/Pasted image 20230127224730.png'> <br />
 So, the parameter is being given in milliseconds.
 
 Now we have to convert our 0x2bf20 value to the decimal, and then convert the milliseconds into minutes.
 
-We have: 0x2bf20 = 180000, and:
+We have: 0x2bf20 = 180000, and: <br />
 <img src='png/Pasted image 20230127224856.png'> <br />
 So the answer to our question is: 3 Minutes.
 
