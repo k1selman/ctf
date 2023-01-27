@@ -18,7 +18,7 @@ As we can see, the compiler is Microsoft Visual C++
 It's time to load up our binary into Ghidra and find where the program calls for Sleep function and what is the parameter used.
 
 With our binary loaded into Ghidra, we can now search for "Sleep" in "Symbol References, Symbol Table" section to help us identify the function which is calling it:
-![](https://github.com/k1selman/ctf-writeups/blob/main/btlo/ClassicInjection/png/Pasted%image%20230127224012.png | =100x100)
+![](https://github.com/k1selman/ctf-writeups/blob/main/btlo/ClassicInjection/png/Pasted%image%20230127224012.png =100x100)
 By filtering the symbol references with "Sleep" we are able to find it, and also the details on the call like location, label, subroutine etc.
 
 We can see that the subroutine is called "FUN_00401220" so we can select that and jump straight into it by double clicking the function name to see what is happening there.
