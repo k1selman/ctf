@@ -87,7 +87,7 @@ Since LPVOID is optional parameter, we are interested in what comes as SIZE_T dw
 ## Q5: Shellcode injection involves three important windows API. What is the name of the API Call used?
 Here all we have to do is look at the piece of code with our VirtualAllocEx used. It's very readable in decompiled code, so we don't need to look at assembly here:<br />
 <img src='png/Pasted image 20230127232133.png'> <br />
-So, after VirtualAllocEx, which allocated memory chunk of the same size as our shellcode, we see WriteProcessMemory and CreateRemoteThread functions, and the API Call is "CreateRemoteThread".
+So, after VirtualAllocEx, which allocated memory chunk of the same size as our shellcode, we see WriteProcessMemory and CreateRemoteThread functions, and the API Call in question is "CreateRemoteThread", which creates a thread that runs in the virtual address space of another process, and in this case, makes it execute the shellcode.
 
 ## Q6: What is the name of the victim process?
 Once again, this can be read both from assembly code and decompiled code, so we just need to spot it from reading the code, and we have:
