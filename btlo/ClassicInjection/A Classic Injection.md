@@ -90,7 +90,7 @@ Here all we have to do is look at the piece of code with our VirtualAllocEx used
 So, after VirtualAllocEx, which allocated memory chunk of the same size as our shellcode, we see WriteProcessMemory and CreateRemoteThread functions, and the API Call in question is "CreateRemoteThread", which creates a thread that runs in the virtual address space of another process, and in this case, makes it execute the shellcode.
 
 ## Q6: What is the name of the victim process?
-Once again, this can be read both from assembly code and decompiled code, so we just need to spot it from reading the code of our function, and we have:
+Once again, this can be read both from assembly code and decompiled code, so we just need to spot it from reading the code of our function, and we have:<br />
 <img src='png/Pasted image 20230127232736.png'> <br />
 And in decompiled code: <br />
 <img src='png/Pasted image 20230127232811.png'> <br />
