@@ -67,7 +67,7 @@ So, we have that the EDX value that is being referenced is in DAT_00403210 and t
 And here we have it! Its just reversed "oltb", so by un-reversing it we are obtaining "btlo" which is the correct answer.
 
 ## Q4: What is the size of the shellcode?
-Here one of the reading suggestions from the Scenario comes in handy: https://www.ired.team/offensive-security/code-injection-process-injection/process-injection
+Here one of the reading suggestions from the Scenario comes in handy: https://www.ired.team/offensive-security/code-injection-process-injection/process-injection <br />
 Not only because it's a good read overall, but rather because we can see sample C++ code to inject and invoke the shellcode, and what we can takeaway from that is the code is utilizing "VirtualAlloc" function, so that is what we are going to look after in our binary.
 
 Let's use Symbol References once again:
