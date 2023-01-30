@@ -5,7 +5,7 @@ SHA256: bb28a152966bed0a369f30149a912982ea33b408794bfbd82e73c87ff4e184ff <br />
 First thing's first, lets run "file" against given to make sure we are dealing with ELF file format: <br />
 <img src ='png/Pasted image 20230130181037.png'><br />
 
-Alright, we have in fact 64-bit ELF executable, so since this is crackme challenge, lets run the file and see what is the required input: <br />
+Alright, we have in fact 64-bit ELF executable, so since this is crackme challenge, lets run it and see what is the required input: <br />
 <img src ='png/Pasted image 20230130181200.png'> <br />
 
 So, as usual, we are supposed to find the desired password.<br />
