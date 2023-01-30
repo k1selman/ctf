@@ -7,8 +7,7 @@ First thing's first, lets run "file" against given to make sure we are dealing w
 
 Alright, we have in fact 64-bit ELF executable, so since this is crackme challenge, lets run it and see what is the required input: <br />
 <img src ='png/Pasted image 20230130181200.png'> <br />
-
-So, as usual, we are supposed to find the desired password.<br />
+So, as usual, we are supposed to find the desired password.<br /><br />
 Let's fire up Ghidra and load our binary into it and study the contents of it - like, for example, functions.<br />
 When we let Ghidra analyze the binary, we will be able to see what functions were identified within the binary, as in this example:<br />
 <img src ='png/Pasted image 20230130181505.png'><br />
