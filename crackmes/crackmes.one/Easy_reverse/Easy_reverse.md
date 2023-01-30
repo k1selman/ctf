@@ -19,4 +19,4 @@ The decompiled code is very readable and we can easily understand the program lo
 So, how does the password should look like?<br />
 Well, line 9 tells us that it should be 10 characters long, and then will meet the condition from the first if statement. After this the program interprets, in line 10, (param_2[1] + 4) as a pointer for char and reads data where (param_2[1] + 4) points at - so, where the 5th character points at, to be precise. And in this case it should be pointing at character '@'. So, to sum things up - if our input is 10 characters long, and the 5th character is '@', we should be able to grab our flag. Let's see if we are right by giving four 'a' + '@' + five 'a' as an input:<br />
 <img src ='png/Pasted image 20230130183401.png'><br />
-Worked like a charm. Indeed an easy RE challenge :)<br />
+Worked like a charm. Indeed an Easy_reverse :)<br />
