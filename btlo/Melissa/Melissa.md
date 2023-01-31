@@ -13,7 +13,7 @@ To answer this question, it would be a good idea to run tools like olevba or ole
 We can see immediately see that stream number of our interest is 7, as the letter M next to the stream indicate that given stream contains macros.
 
 ### Q2: After identifying which version of word, Melissa will enable all macros from registry?
-Answer to this question can be found easily after running olevba agains the target file, where we can spot in of the first few lines:<br />
+Answer to this question can be found easily after running olevba agains the target file, where we can spot in one of the first few lines:<br />
 <img src='png/Pasted image 20230130210929.png'><br />
 And the Word version of interest is 9.0
 
