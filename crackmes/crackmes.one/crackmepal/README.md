@@ -1,6 +1,8 @@
-SHA256: 1b7d7c5ae2b5cd333dd539185581ccf5f74ba2e8c48e3a047b7bc9a44a50a59a <br />
-Platform: Linux <br />
-Challenge description: Find the serial key and code a keygen. <br />
+**Challenge name:** Crackmepal
+**Challenge description:** Find the serial key and code a keygen. <br />
+**SHA256**: 1b7d7c5ae2b5cd333dd539185581ccf5f74ba2e8c48e3a047b7bc9a44a50a59a <br />
+**Platform**: Linux <br />
+
 <br />
 When we try to run our binary, we get: <br />
 <img src='png/Pasted image 20230205142500.png'> <br />
