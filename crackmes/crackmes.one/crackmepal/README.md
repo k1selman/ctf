@@ -15,7 +15,7 @@ The decompiled code looks like this. Right away we see that we need to do some r
 However, Ghidra for some reason has issues with square brackets and its easier to use reference int main(int argc, char **argv) to make our code like that using "Edit Function Signature" option:<br />
 <img src='png/Pasted image 20230205143411.png'><br />
 Line 12 says that the function expects argc to be equal to 2 so we can enter our if-else. So it expects one argument to be passed in - let's take a look at corresponding "else" on line 46:<br />
-<img src='png/Pasted image 20230205151101.png'<br />
+<img src='png/Pasted image 20230205151101.png'><br />
 So, the second argument is a password. The disassembled code of this part looks like:<br />
 <img src='png/Pasted image 20230205151232.png'><br />
 And we see LEA (Load Effective Address) being called, and what it does is computing the effective address of the second operand and storing it into argc (first operand here). Ok, lets go back at the start of our if-else and see what is done as the function goes on. On line 13 we can see that the second argument is being stored in unclear-named variable, so let's rename it to "password":<br />
