@@ -4,7 +4,7 @@
 **Platform**: Linux <br />
 <br />
 When we try to run our binary, we get: <br />
-<img src='png/Pasted image 20230205142500.png'>
+<img src='png/Pasted image 20230205142500.png'> <br />
 Let's fire up Ghidra and load our binary into it. <br />
 After the initial analysis is done by Ghidra, we can see that it was able to identify the main function of the program:<br />
 <img src='png/Pasted image 20230205142555.png'><br /> 
