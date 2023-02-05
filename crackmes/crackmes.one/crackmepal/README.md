@@ -8,7 +8,7 @@ Let's fire up Ghidra and load our binary into it. <br />
 After the initial analysis is done by Ghidra, we can see that it was able to identify the main function of the program:<br />
 <img src='png/Pasted image 20230205142555.png'><br /> 
 Good for us, now we can take a look at the code that is interesting for us:<br />
-<img src='Pasted image 20230205142712.png'><br />
+<img src='png/Pasted image 20230205142712.png'><br />
 The decompiled code looks like this. Right away we see that we need to do some renaming here to make it more readable for us. Every C program coded to run in a hosted execution environment contains the definition (not the prototype) of a function named `**main**`, which is the designated start of the program. Usually, we will see something like:<br />
 <img src='png/Pasted image 20230205143317.png'><br />
 However, Ghidra for some reason has issues with square brackets and its easier to use reference int main(int argc, char **argv) to make our code like that using "Edit Function Signature" option:<br />
