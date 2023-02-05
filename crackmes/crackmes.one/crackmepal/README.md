@@ -2,10 +2,9 @@
 **Challenge description:** Find the serial key and code a keygen. <br />
 **SHA256**: 1b7d7c5ae2b5cd333dd539185581ccf5f74ba2e8c48e3a047b7bc9a44a50a59a <br />
 **Platform**: Linux <br />
-
 <br />
 When we try to run our binary, we get: <br />
-<img src='png/Pasted image 20230205142500.png'> <br />
+<img src='png/Pasted image 20230205142500.png'>
 Let's fire up Ghidra and load our binary into it. <br />
 After the initial analysis is done by Ghidra, we can see that it was able to identify the main function of the program:<br />
 <img src='png/Pasted image 20230205142555.png'><br /> 
