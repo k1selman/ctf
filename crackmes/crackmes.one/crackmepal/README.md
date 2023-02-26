@@ -39,4 +39,6 @@ After defining those two functions, we put them to use by invoking test function
 <img src='png/Pasted image 20230205160728.png'><br />
 Looks just fine. We have cracked the challenge and successfuly built key generator for it:) 
 
+Reference: https://medium.com/@traub/cracking-your-first-crackme-w-gand-writing-a-key-generator-w-python-91c345f0dfa2
+
 
