@@ -1,1 +1,1 @@
-Writeups for challs from CTFs I participated in 2024.
+Writeups for challs I solved from CTFs that took place in 2024
