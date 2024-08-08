@@ -1,3 +1,3 @@
-## CTF-Writeups
+### ctf stuff
 
-RE, pwning, cryptography challs from past CTFs 
+exploits and some writeups from ctfs
