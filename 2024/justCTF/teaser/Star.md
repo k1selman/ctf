@@ -1,6 +1,6 @@
-<b>CTF:justCTF 2024 teaser</b><br>
-<b>Challenge:star</b><br>
-<b>Category:RE</b><br>
+<b>CTF: justCTF 2024 teaser</b><br>
+<b>Challenge: star</b><br>
+<b>Category: RE</b><br>
 
 We are presented with star.tar.gz archive which contains star binary (ELF 64-bit).
 
