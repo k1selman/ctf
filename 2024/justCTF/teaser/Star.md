@@ -22,3 +22,18 @@ Main function has 9 blocks of three function calls followed by do-while interact
     puVar3 = (undefined8 *)thunk_FUN_0010b9f0(uVar2);
     (**(code **)*puVar3)(puVar3);
 ```
+
+Given the structure of main, it seemed that there are more 'functionalities' present in the binary, just not listed in the menu, and by
+going through numbers 6, 7, 8 and 9, the following result was most interesting:
+
+```
+JCTF COMMANDER v0.1
+1. create file
+2. rename file
+3. print file
+4. delete file
+5. edit file
+0. exit
+> 7
+Input archive name:
+```
