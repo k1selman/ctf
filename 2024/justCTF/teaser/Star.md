@@ -36,3 +36,13 @@ JCTF COMMANDER v0.1
 > 7
 Input archive name:
 ```
+
+And analysing the binary with ltrace and selecting option 7 resulted in finding call:
+```
+"/bin/tar cf "                                                                                
+```
+So, with this and a little bit of googling I found https://gtfobins.github.io/gtfobins/tar/#shell.
+
+
+
+
