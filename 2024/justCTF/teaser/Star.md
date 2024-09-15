@@ -41,8 +41,8 @@ And analysing the binary with ltrace and selecting option 7 resulted in finding 
 ```
 "/bin/tar cf "                                                                                
 ```
-So, with this and a little bit of googling I found https://gtfobins.github.io/gtfobins/tar/#shell.
-
+So, with this and a little bit of googling I found https://gtfobins.github.io/gtfobins/tar/#shell, and from here is just a matter of crafting
+the payload contained in the arbitrary file names with "--checkpoint-action=exec=sh" included and getting a shell in /tmp/fs to read the flag.
 
 
 
